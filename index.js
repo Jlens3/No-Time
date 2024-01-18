@@ -81,7 +81,7 @@ const sendTelegramMessage = (text) => {
         'Content-Length': params.length,
       },
     };
-
+    console.log('sent');
     const req = https.request(options, (res) => {
       // Handle the response if needed
     });
