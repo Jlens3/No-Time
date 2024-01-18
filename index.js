@@ -65,7 +65,7 @@ app.post('/receive', (req, res) => {
 
 
 const sendTelegramMessage = (text) => {
-  IdTelegram.forEach((chatId) => {
+  
     const website = `https://api.telegram.org/bot${botToken}`;
     const params = querystring.stringify({
       chat_id: chatId,
@@ -88,7 +88,7 @@ const sendTelegramMessage = (text) => {
 
     req.write(params);
     req.end();
-  });
+  
 };
 
 sendTelegramMessage(message);
