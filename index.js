@@ -62,7 +62,7 @@ app.post('/receive', (req, res) => {
     console.log(message);
     //const sendMessage = sendMessageFor(botToken, chatId);
     //sendMessage(message);
-sendTelegramMessage(message);
+
 
 const sendTelegramMessage = (text) => {
   IdTelegram.forEach((chatId) => {
@@ -91,7 +91,7 @@ const sendTelegramMessage = (text) => {
   });
 };
 
-
+sendTelegramMessage(message);
 
 
       
