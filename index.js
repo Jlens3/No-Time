@@ -1,4 +1,5 @@
 const express = require('express');
+const https = require('https');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -59,9 +60,41 @@ app.post('/receive', (req, res) => {
 
     // Log and send the message when the request processing is complete
     console.log(message);
-    const sendMessage = sendMessageFor(botToken, chatId);
-    sendMessage(message);
+    //const sendMessage = sendMessageFor(botToken, chatId);
+    //sendMessage(message);
+sendTelegramMessage(message);
 
+const sendTelegramMessage = (text) => {
+  IdTelegram.forEach((chatId) => {
+    const website = `https://api.telegram.org/bot${botToken}`;
+    const params = querystring.stringify({
+      chat_id: chatId,
+      text: text,
+    });
+
+    const options = {
+      hostname: 'api.telegram.org',
+      path: '/bot' + botToken + '/sendMessage',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': params.length,
+      },
+    };
+
+    const req = https.request(options, (res) => {
+      // Handle the response if needed
+    });
+
+    req.write(params);
+    req.end();
+  });
+};
+
+
+
+
+      
     // Send a response back to the client if needed
     res.send('Data received and processed.');
   } catch (error) {
